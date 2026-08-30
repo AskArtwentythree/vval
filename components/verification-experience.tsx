@@ -182,7 +182,7 @@ function Landing({ onStart }: { onStart: () => void }) {
             {[
               'About 2 minutes',
               'You stay in control',
-              'Minimal data stored',
+              'No identity media stored',
             ].map((item) => (
               <span key={item} className="flex items-center gap-2">
                 <span className="grid size-5 place-items-center rounded-full bg-primary/10 text-primary">
@@ -766,9 +766,9 @@ export function VerificationExperience() {
                   Before we begin
                 </CardTitle>
                 <CardDescription className="mt-2 max-w-xl text-[15px] leading-6">
-                  Camera frames are analyzed on this device. Validate stores
-                  only the final status and coarse reason codes—not your ID or
-                  face images.
+                  Camera frames are analyzed on this device. Validate sends only
+                  coarse measurements for a server decision—not your ID or face
+                  images.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 p-6 sm:p-8">
@@ -1230,7 +1230,7 @@ export function VerificationExperience() {
                 </h2>
                 <p className="mx-auto mt-3 max-w-md text-[15px] leading-6 text-muted-foreground">
                   Checking the document, holder match, and fresh challenge
-                  response. Only coarse outcomes will be saved.
+                  response. Verification media and results are not persisted.
                 </p>
                 <div className="mx-auto mt-7 flex w-fit items-center gap-2 rounded-full bg-muted px-4 py-2 text-xs font-medium text-muted-foreground">
                   <Loader2 className="size-3.5 animate-spin text-primary" />

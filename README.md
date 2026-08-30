@@ -15,6 +15,13 @@ Open `http://localhost:3000`. Camera access works on localhost in modern
 browsers. The first document scan can take longer while the OCR worker and
 language data load.
 
+## Deploy on Vercel
+
+Import the repository with the Next.js framework preset and leave the root
+directory empty. No environment variables are required for a demo deployment.
+Set `VERIFICATION_SECRET` to a long random value if challenge tokens must remain
+valid across separate deployments.
+
 ## Checks implemented
 
 - document brightness, glare, and focus heuristics
@@ -25,11 +32,11 @@ language data load.
 - a server-issued, cryptographically shuffled moving-dot challenge scored
   against head pose
 
-Raw document and camera frames stay in browser memory. The server stores only
-the session status, coarse reason codes, timestamps, and an event hash in D1.
-The server owns the one-time challenge sequence, validates the returned target
-measurements, and computes the final status; the browser cannot submit a chosen
-status or reason codes.
+Raw document and camera frames stay in browser memory. The Vercel server issues
+a signed, expiring challenge, validates the returned target measurements, and
+computes the final status; the browser cannot submit a chosen status or reason
+codes. This deployment does not persist identity documents, camera media, or
+verification results.
 
 ## Security boundary
 

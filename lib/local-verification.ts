@@ -70,11 +70,21 @@ type HumanInstance = {
   };
 };
 
+type HumanModule = {
+  Human: new (config: Record<string, unknown>) => HumanInstance;
+};
+
+// Keep this browser-only module out of Next.js' server dependency graph.
+// oxlint-disable-next-line typescript/no-implied-eval
+const importBrowserHuman = new Function(
+  'return import("/vendor/human.esm.js")',
+) as () => Promise<HumanModule>;
+
 let humanPromise: Promise<HumanInstance> | null = null;
 
 export function getHuman() {
   if (!humanPromise) {
-    humanPromise = import('@vladmandic/human')
+    humanPromise = importBrowserHuman()
       .then(async ({ Human }) => {
         const human = new Human({
           modelBasePath: '/models/human/',
