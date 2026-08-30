@@ -1,3 +1,5 @@
+DEPLOY LINK - https://vval.vercel.app
+
 # Validate local verification prototype
 
 Validate is a hackathon prototype that replaces the previous simulated flow
